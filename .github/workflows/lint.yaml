@@ -1,0 +1,25 @@
+name: Lint
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.proto"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**.proto"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Buf
+        uses: bufbuild/buf-setup-action@v1
+      - name: Lint
+        uses: bufbuild/buf-lint-action@v1
