@@ -6,6 +6,7 @@ on:
     branches:
       - main
     paths:
+      - ".github/workflows/breaking.yaml"
       - "**.proto"
 
 jobs:
@@ -13,10 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Fetch main branch
+        run: git fetch --no-tags --depth=1 origin main:main
+      - name: Check if there are any .proto files in current branch
+        id: proto-head
+        continue-on-error: true
+        run: git ls-tree -r HEAD | grep '.*\.proto$' >/dev/null
+      - name: Check if there are any .proto files in main branch
+        id: proto-main
+        continue-on-error: true
+        run: git ls-tree -r main | grep '.*\.proto$' >/dev/null
       - name: Setup Buf
+        if: steps.proto-head.outcome == 'success' && steps.proto-main.outcome == 'success'
         uses: bufbuild/buf-setup-action@v1
       - name: Check breaking changes
+        if: steps.proto-head.outcome == 'success' && steps.proto-main.outcome == 'success'
         uses: bufbuild/buf-breaking-action@v1
         with:
           against: "https://github.com/${GITHUB_REPOSITORY}.git#branch=main"
