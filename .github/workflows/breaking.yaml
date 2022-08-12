@@ -1,0 +1,22 @@
+name: Check breaking changes
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "**.proto"
+
+jobs:
+  breaking:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Buf
+        uses: bufbuild/buf-setup-action@v1
+      - name: Check breaking changes
+        uses: bufbuild/buf-breaking-action@v1
+        with:
+          against: "https://github.com/${GITHUB_REPOSITORY}.git#branch=main"
