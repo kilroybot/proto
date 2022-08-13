@@ -4,8 +4,8 @@
 
 kilroy protocol buffers 📜
 
-[![Lint](https://github.com/kilroybot/proto/actions/workflows/lint.yml/badge.svg)](https://github.com/kilroybot/proto/actions/workflows/lint.yml)
-[![Breaking changes](https://github.com/kilroybot/proto/actions/workflows/breaking.yml/badge.svg)](https://github.com/kilroybot/proto/actions/workflows/breaking.yml)
+[![Lint](https://github.com/kilroybot/proto/actions/workflows/lint.yaml/badge.svg)](https://github.com/kilroybot/proto/actions/workflows/lint.yaml)
+[![Breaking changes](https://github.com/kilroybot/proto/actions/workflows/breaking.yaml/badge.svg)](https://github.com/kilroybot/proto/actions/workflows/breaking.yaml)
 
 </div>
 
