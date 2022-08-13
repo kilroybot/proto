@@ -55,7 +55,7 @@ message SetConfigResponse {
 }
 
 message GenerateRequest {
-  uint32 quantity = 1;
+  uint64 quantity = 1;
 }
 
 message GeneratedPost {
@@ -79,7 +79,7 @@ message FitPostsResponse {}
 
 message PostScore {
   string id = 1;
-  int64 score = 2;
+  double score = 2;
 }
 
 message FitScoresRequest {
@@ -108,7 +108,7 @@ message WatchMetricsRequest {}
 
 message WatchMetricsResponse {
   string metric_id = 1;
-  int32 dataset_id = 2;
+  uint64 dataset_id = 2;
   google.protobuf.Struct data = 3;
 }
 
