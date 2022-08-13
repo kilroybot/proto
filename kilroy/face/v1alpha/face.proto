@@ -5,6 +5,13 @@ package kilroy.face.v1alpha;
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
+message GetMetadataRequest {}
+
+message GetMetadataResponse {
+  string key = 1;
+  string description = 2;
+}
+
 message GetPostSchemaRequest {}
 
 message GetPostSchemaResponse {
@@ -91,6 +98,7 @@ message ScrapResponse {
 }
 
 service FaceService {
+  rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse) {}
   rpc GetPostSchema(GetPostSchemaRequest) returns (GetPostSchemaResponse) {}
   rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {}
   rpc WatchStatus(WatchStatusRequest) returns (stream WatchStatusResponse) {}
