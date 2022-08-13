@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package kilroy.face.v1alpha;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+message GetPostSchemaRequest {}
+
+message GetPostSchemaResponse {
+  google.protobuf.Struct schema = 1;
+}
+
+message GetStatusRequest {}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_LOADING = 1;
+  STATUS_READY = 2;
+}
+
+message GetStatusResponse {
+  Status status = 1;
+}
+
+message WatchStatusRequest {}
+
+message WatchStatusResponse {
+  Status status = 1;
+}
+
+message GetConfigSchemaRequest {}
+
+message GetConfigSchemaResponse {
+  google.protobuf.Struct schema = 1;
+}
+
+message GetConfigRequest {}
+
+message GetConfigResponse {
+  google.protobuf.Struct config = 1;
+}
+
+message WatchConfigRequest {}
+
+message WatchConfigResponse {
+  google.protobuf.Struct config = 1;
+}
+
+message SetConfigRequest {
+  google.protobuf.Struct config = 1;
+}
+
+message SetConfigResponse {
+  google.protobuf.Struct config = 1;
+}
+
+message GeneratedPost {
+  google.protobuf.Struct content = 1;
+}
+
+message PostRequest {
+  GeneratedPost post = 1;
+}
+
+message PostResponse {
+  string post_id = 1;
+}
+
+message ScoreRequest {
+  string post_id = 1;
+}
+
+message ScoreResponse {
+  double score = 1;
+}
+
+message ScrapRequest {
+  optional uint64 limit = 1;
+  optional google.protobuf.Timestamp before = 2;
+  optional google.protobuf.Timestamp after = 3;
+}
+
+message RealPost {
+  string id = 1;
+  google.protobuf.Struct content = 2;
+}
+
+message ScrapResponse {
+  RealPost post = 1;
+}
+
+service FaceService {
+  rpc GetPostSchema(GetPostSchemaRequest) returns (GetPostSchemaResponse) {}
+  rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {}
+  rpc WatchStatus(WatchStatusRequest) returns (stream WatchStatusResponse) {}
+  rpc GetConfigSchema(GetConfigSchemaRequest) returns (GetConfigSchemaResponse) {}
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
+  rpc WatchConfig(WatchConfigRequest) returns (stream WatchConfigResponse) {}
+  rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {}
+  rpc Post(PostRequest) returns (PostResponse) {}
+  rpc Score(ScoreRequest) returns (ScoreResponse) {}
+  rpc Scrap(ScrapRequest) returns (stream ScrapResponse) {}
+}
