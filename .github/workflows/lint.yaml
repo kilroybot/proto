@@ -6,11 +6,13 @@ on:
     branches:
       - main
     paths:
+      - ".github/workflows/lint.yaml"
       - "**.proto"
   pull_request:
     branches:
       - main
     paths:
+      - ".github/workflows/lint.yaml"
       - "**.proto"
 
 jobs:
@@ -18,8 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Check if there are any .proto files in current branch
+        id: proto
+        continue-on-error: true
+        run: git ls-tree -r HEAD | grep '.*\.proto$' >/dev/null
       - name: Setup Buf
+        if: steps.proto.outcome == 'success'
         uses: bufbuild/buf-setup-action@v1
       - name: Lint
+        if: steps.proto.outcome == 'success'
         uses: bufbuild/buf-lint-action@v1
