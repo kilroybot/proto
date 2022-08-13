@@ -2,8 +2,6 @@ version: v1
 managed:
   enabled: true
 plugins:
-  - name: python_betterproto
-    out: generated/python
   - name: doc
     out: generated/docs
     opt:
