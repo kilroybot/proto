@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package kilroy.face.v1alpha;
 
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 message GetMetadataRequest {}
@@ -15,7 +14,7 @@ message GetMetadataResponse {
 message GetPostSchemaRequest {}
 
 message GetPostSchemaResponse {
-  google.protobuf.Struct schema = 1;
+  string schema = 1;
 }
 
 message GetStatusRequest {}
@@ -39,31 +38,31 @@ message WatchStatusResponse {
 message GetConfigSchemaRequest {}
 
 message GetConfigSchemaResponse {
-  google.protobuf.Struct schema = 1;
+  string schema = 1;
 }
 
 message GetConfigRequest {}
 
 message GetConfigResponse {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message WatchConfigRequest {}
 
 message WatchConfigResponse {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message SetConfigRequest {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message SetConfigResponse {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message GeneratedPost {
-  google.protobuf.Struct content = 1;
+  string content = 1;
 }
 
 message PostRequest {
@@ -90,7 +89,7 @@ message ScrapRequest {
 
 message RealPost {
   string id = 1;
-  google.protobuf.Struct content = 2;
+  string content = 2;
 }
 
 message ScrapResponse {

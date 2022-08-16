@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package kilroy.module.v1alpha;
 
-import "google/protobuf/struct.proto";
-
 message GetMetadataRequest {}
 
 message GetMetadataResponse {
@@ -14,7 +12,7 @@ message GetMetadataResponse {
 message GetPostSchemaRequest {}
 
 message GetPostSchemaResponse {
-  google.protobuf.Struct schema = 1;
+  string schema = 1;
 }
 
 message GetStatusRequest {}
@@ -38,27 +36,27 @@ message WatchStatusResponse {
 message GetConfigSchemaRequest {}
 
 message GetConfigSchemaResponse {
-  google.protobuf.Struct schema = 1;
+  string schema = 1;
 }
 
 message GetConfigRequest {}
 
 message GetConfigResponse {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message WatchConfigRequest {}
 
 message WatchConfigResponse {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message SetConfigRequest {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message SetConfigResponse {
-  google.protobuf.Struct config = 1;
+  string config = 1;
 }
 
 message GenerateRequest {
@@ -67,7 +65,7 @@ message GenerateRequest {
 
 message GeneratedPost {
   string id = 1;
-  google.protobuf.Struct content = 2;
+  string content = 2;
 }
 
 message GenerateResponse {
@@ -75,7 +73,7 @@ message GenerateResponse {
 }
 
 message RealPost {
-  google.protobuf.Struct content = 1;
+  string content = 1;
 }
 
 message FitPostsRequest {
@@ -102,7 +100,7 @@ message StepResponse {}
 message MetricConfig {
   string id = 1;
   string label = 2;
-  google.protobuf.Struct config = 3;
+  string config = 3;
 }
 
 message GetMetricsConfigRequest {}
@@ -116,7 +114,7 @@ message WatchMetricsRequest {}
 message WatchMetricsResponse {
   string metric_id = 1;
   uint64 dataset_id = 2;
-  google.protobuf.Struct data = 3;
+  string data = 3;
 }
 
 service ModuleService {
