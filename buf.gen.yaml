@@ -4,6 +4,7 @@ managed:
 plugins:
   - name: python_betterproto
     out: generated/python
+    strategy: all
   - name: doc
     out: generated/docs
     opt:
