@@ -90,6 +90,7 @@ message ScrapRequest {
 message RealPost {
   string id = 1;
   string content = 2;
+  double score = 3;
 }
 
 message ScrapResponse {
