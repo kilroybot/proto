@@ -75,6 +75,7 @@ message GenerateResponse {
 
 message RealPost {
   string content = 1;
+  double score = 2;
 }
 
 message FitPostsRequest {
