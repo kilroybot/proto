@@ -61,6 +61,7 @@ message SetConfigResponse {
 
 message GenerateRequest {
   uint64 quantity = 1;
+  bool dry = 2;
 }
 
 message GeneratedPost {
