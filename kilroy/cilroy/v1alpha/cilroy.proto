@@ -1,0 +1,232 @@
+syntax = "proto3";
+
+package kilroy.cilroy.v1alpha;
+
+message GetFaceMetadataRequest {}
+
+message GetFaceMetadataResponse {
+  string key = 1;
+  string description = 2;
+}
+
+message GetModuleMetadataRequest {}
+
+message GetModuleMetadataResponse {
+  string key = 1;
+  string description = 2;
+}
+
+message GetFacePostSchemaRequest {}
+
+message GetFacePostSchemaResponse {
+  string schema = 1;
+}
+
+message GetModulePostSchemaRequest {}
+
+message GetModulePostSchemaResponse {
+  string schema = 1;
+}
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_LOADING = 1;
+  STATUS_READY = 2;
+}
+
+message GetControllerStatusRequest {}
+
+message GetControllerStatusResponse {
+  Status status = 1;
+}
+
+message WatchControllerStatusRequest {}
+
+message WatchControllerStatusResponse {
+  Status status = 1;
+}
+
+message GetFaceStatusRequest {}
+
+message GetFaceStatusResponse {
+  Status status = 1;
+}
+
+message WatchFaceStatusRequest {}
+
+message WatchFaceStatusResponse {
+  Status status = 1;
+}
+
+message GetModuleStatusRequest {}
+
+message GetModuleStatusResponse {
+  Status status = 1;
+}
+
+message WatchModuleStatusRequest {}
+
+message WatchModuleStatusResponse {
+  Status status = 1;
+}
+
+enum TrainingStatus {
+  TRAINING_STATUS_UNSPECIFIED = 0;
+  TRAINING_STATUS_IDLE = 1;
+  TRAINING_STATUS_OFFLINE = 2;
+  TRAINING_STATUS_ONLINE = 3;
+}
+
+message GetTrainingStatusRequest {}
+
+message GetTrainingStatusResponse {
+  TrainingStatus status = 1;
+}
+
+message WatchTrainingStatusRequest {}
+
+message WatchTrainingStatusResponse {
+  TrainingStatus status = 1;
+}
+
+message GetControllerConfigSchemaRequest {}
+
+message GetControllerConfigSchemaResponse {
+  string schema = 1;
+}
+
+message GetControllerConfigRequest {}
+
+message GetControllerConfigResponse {
+  string config = 1;
+}
+
+message WatchControllerConfigRequest {}
+
+message WatchControllerConfigResponse {
+  string config = 1;
+}
+
+message SetControllerConfigRequest {
+  string config = 1;
+}
+
+message SetControllerConfigResponse {
+  string config = 1;
+}
+
+message GetFaceConfigSchemaRequest {}
+
+message GetFaceConfigSchemaResponse {
+  string schema = 1;
+}
+
+message GetFaceConfigRequest {}
+
+message GetFaceConfigResponse {
+  string config = 1;
+}
+
+message WatchFaceConfigRequest {}
+
+message WatchFaceConfigResponse {
+  string config = 1;
+}
+
+message SetFaceConfigRequest {
+  string config = 1;
+}
+
+message SetFaceConfigResponse {
+  string config = 1;
+}
+
+message GetModuleConfigSchemaRequest {}
+
+message GetModuleConfigSchemaResponse {
+  string schema = 1;
+}
+
+message GetModuleConfigRequest {}
+
+message GetModuleConfigResponse {
+  string config = 1;
+}
+
+message WatchModuleConfigRequest {}
+
+message WatchModuleConfigResponse {
+  string config = 1;
+}
+
+message SetModuleConfigRequest {
+  string config = 1;
+}
+
+message SetModuleConfigResponse {
+  string config = 1;
+}
+
+message TrainOfflineRequest {}
+
+message TrainOfflineResponse {}
+
+message TrainOnlineRequest {}
+
+message TrainOnlineResponse {}
+
+message StopTrainingRequest {}
+
+message StopTrainingResponse {}
+
+message MetricConfig {
+  string id = 1;
+  string label = 2;
+  string config = 3;
+}
+
+message GetModuleMetricsConfigRequest {}
+
+message GetModuleMetricsConfigResponse {
+  repeated MetricConfig configs = 1;
+}
+
+message WatchModuleMetricsRequest {}
+
+message WatchModuleMetricsResponse {
+  string metric_id = 1;
+  uint64 dataset_id = 2;
+  string data = 3;
+}
+
+service CilroyService {
+  rpc GetFaceMetadata(GetFaceMetadataRequest) returns (GetFaceMetadataResponse) {}
+  rpc GetModuleMetadata(GetModuleMetadataRequest) returns (GetModuleMetadataResponse) {}
+  rpc GetFacePostSchema(GetFacePostSchemaRequest) returns (GetFacePostSchemaResponse) {}
+  rpc GetModulePostSchema(GetModulePostSchemaRequest) returns (GetModulePostSchemaResponse) {}
+  rpc GetControllerStatus(GetControllerStatusRequest) returns (GetControllerStatusResponse) {}
+  rpc WatchControllerStatus(WatchControllerStatusRequest) returns (stream WatchControllerStatusResponse) {}
+  rpc GetFaceStatus(GetFaceStatusRequest) returns (GetFaceStatusResponse) {}
+  rpc WatchFaceStatus(WatchFaceStatusRequest) returns (stream WatchFaceStatusResponse) {}
+  rpc GetModuleStatus(GetModuleStatusRequest) returns (GetModuleStatusResponse) {}
+  rpc WatchModuleStatus(WatchModuleStatusRequest) returns (stream WatchModuleStatusResponse) {}
+  rpc GetTrainingStatus(GetTrainingStatusRequest) returns (GetTrainingStatusResponse) {}
+  rpc WatchTrainingStatus(WatchTrainingStatusRequest) returns (stream WatchTrainingStatusResponse) {}
+  rpc GetControllerConfigSchema(GetControllerConfigSchemaRequest) returns (GetControllerConfigSchemaResponse) {}
+  rpc GetControllerConfig(GetControllerConfigRequest) returns (GetControllerConfigResponse) {}
+  rpc WatchControllerConfig(WatchControllerConfigRequest) returns (stream WatchControllerConfigResponse) {}
+  rpc SetControllerConfig(SetControllerConfigRequest) returns (SetControllerConfigResponse) {}
+  rpc GetFaceConfigSchema(GetFaceConfigSchemaRequest) returns (GetFaceConfigSchemaResponse) {}
+  rpc GetFaceConfig(GetFaceConfigRequest) returns (GetFaceConfigResponse) {}
+  rpc WatchFaceConfig(WatchFaceConfigRequest) returns (stream WatchFaceConfigResponse) {}
+  rpc SetFaceConfig(SetFaceConfigRequest) returns (SetFaceConfigResponse) {}
+  rpc GetModuleConfigSchema(GetModuleConfigSchemaRequest) returns (GetModuleConfigSchemaResponse) {}
+  rpc GetModuleConfig(GetModuleConfigRequest) returns (GetModuleConfigResponse) {}
+  rpc WatchModuleConfig(WatchModuleConfigRequest) returns (stream WatchModuleConfigResponse) {}
+  rpc SetModuleConfig(SetModuleConfigRequest) returns (SetModuleConfigResponse) {}
+  rpc TrainOffline(TrainOfflineRequest) returns (TrainOfflineResponse) {}
+  rpc TrainOnline(TrainOnlineRequest) returns (TrainOnlineResponse) {}
+  rpc StopTraining(StopTrainingRequest) returns (StopTrainingResponse) {}
+  rpc GetModuleMetricsConfig(GetModuleMetricsConfigRequest) returns (GetModuleMetricsConfigResponse) {}
+  rpc WatchModuleMetrics(WatchModuleMetricsRequest) returns (stream WatchModuleMetricsResponse) {}
+}
