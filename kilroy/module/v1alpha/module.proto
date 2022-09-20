@@ -15,13 +15,13 @@ message GetPostSchemaResponse {
   string schema = 1;
 }
 
-message GetStatusRequest {}
-
 enum Status {
   STATUS_UNSPECIFIED = 0;
   STATUS_LOADING = 1;
   STATUS_READY = 2;
 }
+
+message GetStatusRequest {}
 
 message GetStatusResponse {
   Status status = 1;
@@ -59,14 +59,14 @@ message SetConfigResponse {
   string config = 1;
 }
 
-message GenerateRequest {
-  uint64 quantity = 1;
-  bool dry = 2;
-}
-
 message GeneratedPost {
   string id = 1;
   string content = 2;
+}
+
+message GenerateRequest {
+  uint64 quantity = 1;
+  bool dry = 2;
 }
 
 message GenerateResponse {
