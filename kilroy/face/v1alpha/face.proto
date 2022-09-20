@@ -17,13 +17,13 @@ message GetPostSchemaResponse {
   string schema = 1;
 }
 
-message GetStatusRequest {}
-
 enum Status {
   STATUS_UNSPECIFIED = 0;
   STATUS_LOADING = 1;
   STATUS_READY = 2;
 }
+
+message GetStatusRequest {}
 
 message GetStatusResponse {
   Status status = 1;
@@ -81,16 +81,16 @@ message ScoreResponse {
   double score = 1;
 }
 
-message ScrapRequest {
-  optional uint64 limit = 1;
-  optional google.protobuf.Timestamp before = 2;
-  optional google.protobuf.Timestamp after = 3;
-}
-
 message RealPost {
   string id = 1;
   string content = 2;
   double score = 3;
+}
+
+message ScrapRequest {
+  optional uint64 limit = 1;
+  optional google.protobuf.Timestamp before = 2;
+  optional google.protobuf.Timestamp after = 3;
 }
 
 message ScrapResponse {
