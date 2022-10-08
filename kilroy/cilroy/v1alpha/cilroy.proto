@@ -209,6 +209,13 @@ message WatchModuleMetricsResponse {
   MetricData metric = 1;
 }
 
+message WatchAllRequest {}
+
+message WatchAllResponse {
+  string method = 1;
+  string message = 2;
+}
+
 service CilroyService {
   rpc GetFaceMetadata(GetFaceMetadataRequest) returns (GetFaceMetadataResponse) {}
   rpc GetModuleMetadata(GetModuleMetadataRequest) returns (GetModuleMetadataResponse) {}
@@ -240,4 +247,5 @@ service CilroyService {
   rpc GetModuleMetricsConfig(GetModuleMetricsConfigRequest) returns (GetModuleMetricsConfigResponse) {}
   rpc GetModuleMetrics(GetModuleMetricsRequest) returns (GetModuleMetricsResponse) {}
   rpc WatchModuleMetrics(WatchModuleMetricsRequest) returns (stream WatchModuleMetricsResponse) {}
+  rpc WatchAll(WatchAllRequest) returns (stream WatchAllResponse) {}
 }
