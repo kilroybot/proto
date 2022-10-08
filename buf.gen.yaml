@@ -10,3 +10,9 @@ plugins:
     opt:
       - json,proto.json
     strategy: all
+  - remote: buf.build/bufbuild/plugins/es:v0.1.1-1
+    out: generated/es
+    opt: target=ts
+  - remote: buf.build/bufbuild/plugins/connect-web:v0.2.1-1
+    out: generated/connect-web
+    opt: target=ts
