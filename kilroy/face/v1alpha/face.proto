@@ -71,6 +71,7 @@ message PostRequest {
 
 message PostResponse {
   string post_id = 1;
+  string post_url = 2;
 }
 
 message ScoreRequest {
