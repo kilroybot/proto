@@ -102,7 +102,8 @@ message StepResponse {}
 message MetricConfig {
   string id = 1;
   string label = 2;
-  string config = 3;
+  string group = 3;
+  string config = 4;
 }
 
 message GetMetricsConfigRequest {}
