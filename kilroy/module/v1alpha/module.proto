@@ -119,6 +119,10 @@ message WatchMetricsResponse {
   string data = 3;
 }
 
+message ResetRequest {}
+
+message ResetResponse {}
+
 service ModuleService {
   rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse) {}
   rpc GetPostSchema(GetPostSchemaRequest) returns (GetPostSchemaResponse) {}
@@ -134,4 +138,5 @@ service ModuleService {
   rpc Step(StepRequest) returns (StepResponse) {}
   rpc GetMetricsConfig(GetMetricsConfigRequest) returns (GetMetricsConfigResponse) {}
   rpc WatchMetrics(WatchMetricsRequest) returns (stream WatchMetricsResponse) {}
+  rpc Reset(ResetRequest) returns (ResetResponse) {}
 }

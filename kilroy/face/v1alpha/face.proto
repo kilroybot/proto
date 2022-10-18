@@ -97,6 +97,10 @@ message ScrapResponse {
   RealPost post = 1;
 }
 
+message ResetRequest {}
+
+message ResetResponse {}
+
 service FaceService {
   rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse) {}
   rpc GetPostSchema(GetPostSchemaRequest) returns (GetPostSchemaResponse) {}
@@ -109,4 +113,5 @@ service FaceService {
   rpc Post(PostRequest) returns (PostResponse) {}
   rpc Score(ScoreRequest) returns (ScoreResponse) {}
   rpc Scrap(ScrapRequest) returns (stream ScrapResponse) {}
+  rpc Reset(ResetRequest) returns (ResetResponse) {}
 }

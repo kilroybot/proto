@@ -216,6 +216,18 @@ message WatchAllResponse {
   string message = 2;
 }
 
+message ResetControllerRequest {}
+
+message ResetControllerResponse {}
+
+message ResetFaceRequest {}
+
+message ResetFaceResponse {}
+
+message ResetModuleRequest {}
+
+message ResetModuleResponse {}
+
 service CilroyService {
   rpc GetFaceMetadata(GetFaceMetadataRequest) returns (GetFaceMetadataResponse) {}
   rpc GetModuleMetadata(GetModuleMetadataRequest) returns (GetModuleMetadataResponse) {}
@@ -248,4 +260,7 @@ service CilroyService {
   rpc GetModuleMetrics(GetModuleMetricsRequest) returns (GetModuleMetricsResponse) {}
   rpc WatchModuleMetrics(WatchModuleMetricsRequest) returns (stream WatchModuleMetricsResponse) {}
   rpc WatchAll(WatchAllRequest) returns (stream WatchAllResponse) {}
+  rpc ResetController(ResetControllerRequest) returns (ResetControllerResponse) {}
+  rpc ResetFace(ResetFaceRequest) returns (ResetFaceResponse) {}
+  rpc ResetModule(ResetModuleRequest) returns (ResetModuleResponse) {}
 }
