@@ -229,6 +229,25 @@ message ResetModuleRequest {}
 
 message ResetModuleResponse {}
 
+message Post {
+  string id = 1;
+  string url = 2;
+  string content = 3;
+  string created_at = 4;
+}
+
+message GetFeedRequest {}
+
+message GetFeedResponse {
+  repeated Post posts = 1;
+}
+
+message WatchFeedRequest {}
+
+message WatchFeedResponse {
+  Post post = 1;
+}
+
 service CilroyService {
   rpc GetFaceMetadata(GetFaceMetadataRequest) returns (GetFaceMetadataResponse) {}
   rpc GetModuleMetadata(GetModuleMetadataRequest) returns (GetModuleMetadataResponse) {}
@@ -264,4 +283,6 @@ service CilroyService {
   rpc ResetController(ResetControllerRequest) returns (ResetControllerResponse) {}
   rpc ResetFace(ResetFaceRequest) returns (ResetFaceResponse) {}
   rpc ResetModule(ResetModuleRequest) returns (ResetModuleResponse) {}
+  rpc GetFeed(GetFeedRequest) returns (GetFeedResponse) {}
+  rpc WatchFeed(WatchFeedRequest) returns (stream WatchFeedResponse) {}
 }
