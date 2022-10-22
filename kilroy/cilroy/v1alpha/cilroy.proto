@@ -248,6 +248,14 @@ message WatchFeedResponse {
   Post post = 1;
 }
 
+message GeneratePostsRequest {
+  uint64 quantity = 1;
+}
+
+message GeneratePostsResponse {
+  string content = 1;
+}
+
 service CilroyService {
   rpc GetFaceMetadata(GetFaceMetadataRequest) returns (GetFaceMetadataResponse) {}
   rpc GetModuleMetadata(GetModuleMetadataRequest) returns (GetModuleMetadataResponse) {}
@@ -285,4 +293,5 @@ service CilroyService {
   rpc ResetModule(ResetModuleRequest) returns (ResetModuleResponse) {}
   rpc GetFeed(GetFeedRequest) returns (GetFeedResponse) {}
   rpc WatchFeed(WatchFeedRequest) returns (stream WatchFeedResponse) {}
+  rpc GeneratePosts(GeneratePostsRequest) returns (stream GeneratePostsResponse) {}
 }
