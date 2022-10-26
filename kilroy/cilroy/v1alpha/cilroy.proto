@@ -1,297 +1,574 @@
+/**
+ * Definitions for cilroy service.
+ */
 syntax = "proto3";
 
 package kilroy.cilroy.v1alpha;
 
+/**
+ * Request for GetFaceMetadata.
+ */
 message GetFaceMetadataRequest {}
 
+/**
+ * Response from GetFaceMetadata.
+ */
 message GetFaceMetadataResponse {
-  string key = 1;
-  string description = 2;
+  string key = 1; // The key of the face.
+  string description = 2; // The description of the face.
 }
 
+/**
+ * Request for GetModuleMetadata.
+ */
 message GetModuleMetadataRequest {}
 
+/**
+ * Response from GetModuleMetadata.
+ */
 message GetModuleMetadataResponse {
-  string key = 1;
-  string description = 2;
+  string key = 1; // The key of the module.
+  string description = 2; // The description of the module.
 }
 
+/**
+ * Request for GetFacePostSchema.
+ */
 message GetFacePostSchemaRequest {}
 
+/**
+ * Response from GetFacePostSchema.
+ */
 message GetFacePostSchemaResponse {
-  string schema = 1;
+  string schema = 1; // The schema of a post as a JSON string.
 }
 
+/**
+ * Request for GetModulePostSchema.
+ */
 message GetModulePostSchemaRequest {}
 
+/**
+ * Response from GetModulePostSchema.
+ */
 message GetModulePostSchemaResponse {
-  string schema = 1;
+  string schema = 1; // The schema of a post as a JSON string.
 }
 
+/**
+ * Possible service statuses.
+ */
 enum Status {
-  STATUS_UNSPECIFIED = 0;
-  STATUS_LOADING = 1;
-  STATUS_READY = 2;
+  STATUS_UNSPECIFIED = 0; // Unspecified status.
+  STATUS_LOADING = 1; // The service is loading.
+  STATUS_READY = 2; // The service is ready.
 }
 
+/**
+ * Request for GetControllerStatus.
+ */
 message GetControllerStatusRequest {}
 
+/**
+ * Response from GetControllerStatus.
+ */
 message GetControllerStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the controller.
 }
 
+/**
+ * Request for WatchControllerStatus.
+ */
 message WatchControllerStatusRequest {}
 
+/**
+ * Response from WatchControllerStatus.
+ */
 message WatchControllerStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the controller.
 }
 
+/**
+ * Request for GetFaceStatus.
+ */
 message GetFaceStatusRequest {}
 
+/**
+ * Response from GetFaceStatus.
+ */
 message GetFaceStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the face.
 }
 
+/**
+ * Request for WatchFaceStatus.
+ */
 message WatchFaceStatusRequest {}
 
+/**
+ * Response from WatchFaceStatus.
+ */
 message WatchFaceStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the face.
 }
 
+/**
+ * Request for GetModuleStatus.
+ */
 message GetModuleStatusRequest {}
 
+/**
+ * Response from GetModuleStatus.
+ */
 message GetModuleStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the module.
 }
 
+/**
+ * Request for WatchModuleStatus.
+ */
 message WatchModuleStatusRequest {}
 
+/**
+ * Response from WatchModuleStatus.
+ */
 message WatchModuleStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the module.
 }
 
+/**
+ * Possible training statuses.
+ */
 enum TrainingStatus {
-  TRAINING_STATUS_UNSPECIFIED = 0;
-  TRAINING_STATUS_IDLE = 1;
-  TRAINING_STATUS_OFFLINE = 2;
-  TRAINING_STATUS_ONLINE = 3;
+  TRAINING_STATUS_UNSPECIFIED = 0; // Unspecified training status.
+  TRAINING_STATUS_IDLE = 1; // The training is idle.
+  TRAINING_STATUS_OFFLINE = 2; // The training is in offline mode.
+  TRAINING_STATUS_ONLINE = 3; // The training is in online mode.
 }
 
+/**
+ * Request for GetTrainingStatus.
+ */
 message GetTrainingStatusRequest {}
 
+/**
+ * Response from GetTrainingStatus.
+ */
 message GetTrainingStatusResponse {
-  TrainingStatus status = 1;
+  TrainingStatus status = 1; // The training status.
 }
 
+/**
+ * Request for WatchTrainingStatus.
+ */
 message WatchTrainingStatusRequest {}
 
+/**
+ * Response from WatchTrainingStatus.
+ */
 message WatchTrainingStatusResponse {
-  TrainingStatus status = 1;
+  TrainingStatus status = 1; // The training status.
 }
 
+/**
+ * Request for GetControllerConfigSchema.
+ */
 message GetControllerConfigSchemaRequest {}
 
+/**
+ * Response from GetControllerConfigSchema.
+ */
 message GetControllerConfigSchemaResponse {
-  string schema = 1;
+  string schema = 1; // The schema of the controller config as a JSON string.
 }
 
+/**
+ * Request for GetControllerConfig.
+ */
 message GetControllerConfigRequest {}
 
+/**
+ * Response from GetControllerConfig.
+ */
 message GetControllerConfigResponse {
-  string config = 1;
+  string config = 1; // The controller config as a JSON string.
 }
 
+/**
+ * Request for WatchControllerConfig.
+ */
 message WatchControllerConfigRequest {}
 
+/**
+ * Response from WatchControllerConfig.
+ */
 message WatchControllerConfigResponse {
-  string config = 1;
+  string config = 1; // The controller config as a JSON string.
 }
 
+/**
+ * Request for SetControllerConfig.
+ */
 message SetControllerConfigRequest {
-  string config = 1;
+  string config = 1; // The controller config as a JSON string.
 }
 
+/**
+ * Response from SetControllerConfig.
+ */
 message SetControllerConfigResponse {
-  string config = 1;
+  string config = 1; // The controller config as a JSON string.
 }
 
+/**
+ * Request for GetFaceConfigSchema.
+ */
 message GetFaceConfigSchemaRequest {}
 
+/**
+ * Response from GetFaceConfigSchema.
+ */
 message GetFaceConfigSchemaResponse {
-  string schema = 1;
+  string schema = 1; // The schema of the face config as a JSON string.
 }
 
+/**
+ * Request for GetFaceConfig.
+ */
 message GetFaceConfigRequest {}
 
+/**
+ * Response from GetFaceConfig.
+ */
 message GetFaceConfigResponse {
-  string config = 1;
+  string config = 1; // The face config as a JSON string.
 }
 
+/**
+ * Request for WatchFaceConfig.
+ */
 message WatchFaceConfigRequest {}
 
+/**
+ * Response from WatchFaceConfig.
+ */
 message WatchFaceConfigResponse {
-  string config = 1;
+  string config = 1; // The face config as a JSON string.
 }
 
+/**
+ * Request for SetFaceConfig.
+ */
 message SetFaceConfigRequest {
-  string config = 1;
+  string config = 1; // The face config as a JSON string.
 }
 
+/**
+ * Response from SetFaceConfig.
+ */
 message SetFaceConfigResponse {
-  string config = 1;
+  string config = 1; // The face config as a JSON string.
 }
 
+/**
+ * Request for GetModuleConfigSchema.
+ */
 message GetModuleConfigSchemaRequest {}
 
+/**
+ * Response from GetModuleConfigSchema.
+ */
 message GetModuleConfigSchemaResponse {
-  string schema = 1;
+  string schema = 1; // The schema of the module config as a JSON string.
 }
 
+/**
+ * Request for GetModuleConfig.
+ */
 message GetModuleConfigRequest {}
 
+/**
+ * Response from GetModuleConfig.
+ */
 message GetModuleConfigResponse {
-  string config = 1;
+  string config = 1; // The module config as a JSON string.
 }
 
+/**
+ * Request for WatchModuleConfig.
+ */
 message WatchModuleConfigRequest {}
 
+/**
+ * Response from WatchModuleConfig.
+ */
 message WatchModuleConfigResponse {
-  string config = 1;
+  string config = 1; // The module config as a JSON string.
 }
 
+/**
+ * Request for SetModuleConfig.
+ */
 message SetModuleConfigRequest {
-  string config = 1;
+  string config = 1; // The module config as a JSON string.
 }
 
+/**
+ * Response from SetModuleConfig.
+ */
 message SetModuleConfigResponse {
-  string config = 1;
+  string config = 1; // The module config as a JSON string.
 }
 
+/**
+ * Request for TrainOffline.
+ */
 message TrainOfflineRequest {}
 
+/**
+ * Response from TrainOffline.
+ */
 message TrainOfflineResponse {}
 
+/**
+ * Request for TrainOnline.
+ */
 message TrainOnlineRequest {}
 
+/**
+ * Response from TrainOnline.
+ */
 message TrainOnlineResponse {}
 
+/**
+ * Request for StopTraining.
+ */
 message StopTrainingRequest {}
 
+/**
+ * Response from StopTraining.
+ */
 message StopTrainingResponse {}
 
+/**
+ * Metric configuration data.
+ */
 message MetricConfig {
-  string id = 1;
-  string label = 2;
-  string group = 3;
-  string config = 4;
+  string id = 1; // The ID of the metric.
+  string label = 2; // The label of the metric.
+  string group = 3; // The group of the metric.
+  string config = 4; // The config of the metric as a JSON string.
 }
 
+/**
+ * Request for GetModuleMetricsConfig.
+ */
 message GetModuleMetricsConfigRequest {}
 
+/**
+ * Response from GetModuleMetricsConfig.
+ */
 message GetModuleMetricsConfigResponse {
-  repeated MetricConfig configs = 1;
+  repeated MetricConfig configs = 1; // The metrics configs.
 }
 
+/**
+ * Metric data.
+ */
 message MetricData {
-  string metric_id = 1;
-  uint64 dataset_id = 2;
-  string data = 3;
+  string metric_id = 1; // The ID of the metric.
+  uint64 dataset_id = 2; // The ID of the dataset.
+  string data = 3; // The data of the metric as a JSON string.
 }
 
+/**
+ * Request for GetModuleMetrics.
+ */
 message GetModuleMetricsRequest {}
 
+/**
+ * Response from GetModuleMetrics.
+ */
 message GetModuleMetricsResponse {
-  repeated MetricData metrics = 1;
+  repeated MetricData metrics = 1; // The metrics data.
 }
 
+/**
+ * Request for WatchModuleMetrics.
+ */
 message WatchModuleMetricsRequest {}
 
+/**
+ * Response from WatchModuleMetrics.
+ */
 message WatchModuleMetricsResponse {
-  MetricData metric = 1;
+  MetricData metric = 1; // The metric data.
 }
 
+/**
+ * Request for WatchAll.
+ */
 message WatchAllRequest {}
 
+/**
+ * Response from WatchAll.
+ */
 message WatchAllResponse {
-  string method = 1;
-  string message = 2;
+  string method = 1; // The method that the message is from.
+  string message = 2; // The message as a JSON string.
 }
 
+/**
+ * Request for ResetController.
+ */
 message ResetControllerRequest {}
 
+/**
+ * Response from ResetController.
+ */
 message ResetControllerResponse {}
 
+/**
+ * Request for ResetFace.
+ */
 message ResetFaceRequest {}
 
+/**
+ * Response from ResetFace.
+ */
 message ResetFaceResponse {}
 
+/**
+ * Request for ResetModule.
+ */
 message ResetModuleRequest {}
 
+/**
+ * Response from ResetModule.
+ */
 message ResetModuleResponse {}
 
 message Post {
-  string id = 1;
-  string url = 2;
-  string content = 3;
-  string created_at = 4;
+  string id = 1; // The ID of the post.
+  string url = 2; // The URL of the post.
+  string content = 3; // The content of the post as a JSON string.
+  string created_at = 4; // The creation time of the post.
 }
 
+/**
+ * Request for GetFeed.
+ */
 message GetFeedRequest {}
 
+/**
+ * Response from GetFeed.
+ */
 message GetFeedResponse {
-  repeated Post posts = 1;
+  repeated Post posts = 1; // The posts in the feed.
 }
 
+/**
+ * Request for WatchFeed.
+ */
 message WatchFeedRequest {}
 
+/**
+ * Response from WatchFeed.
+ */
 message WatchFeedResponse {
-  Post post = 1;
+  Post post = 1; // The post in the feed.
 }
 
+/**
+ * Request for GeneratePosts.
+ */
 message GeneratePostsRequest {
-  uint64 quantity = 1;
+  uint64 quantity = 1; // The quantity of posts to generate.
 }
 
+/**
+ * Response from GeneratePosts.
+ */
 message GeneratePostsResponse {
-  string content = 1;
+  string content = 1; // The content of the posts as a JSON string.
 }
 
+/**
+ * Cilroy service.
+ */
 service CilroyService {
+  // Returns the metadata of the face.
   rpc GetFaceMetadata(GetFaceMetadataRequest) returns (GetFaceMetadataResponse) {}
+  // Returns the metadata of the module.
   rpc GetModuleMetadata(GetModuleMetadataRequest) returns (GetModuleMetadataResponse) {}
+  // Returns the schema of a post as reported by the face.
   rpc GetFacePostSchema(GetFacePostSchemaRequest) returns (GetFacePostSchemaResponse) {}
+  // Returns the schema of a post as reported by the module.
   rpc GetModulePostSchema(GetModulePostSchemaRequest) returns (GetModulePostSchemaResponse) {}
+  // Returns the status of the controller.
   rpc GetControllerStatus(GetControllerStatusRequest) returns (GetControllerStatusResponse) {}
+  // Returns an infinite stream of controller status updates.
   rpc WatchControllerStatus(WatchControllerStatusRequest) returns (stream WatchControllerStatusResponse) {}
+  // Returns the status of the face.
   rpc GetFaceStatus(GetFaceStatusRequest) returns (GetFaceStatusResponse) {}
+  // Returns an infinite stream of face status updates.
   rpc WatchFaceStatus(WatchFaceStatusRequest) returns (stream WatchFaceStatusResponse) {}
+  // Returns the status of the module.
   rpc GetModuleStatus(GetModuleStatusRequest) returns (GetModuleStatusResponse) {}
+  // Returns an infinite stream of module status updates.
   rpc WatchModuleStatus(WatchModuleStatusRequest) returns (stream WatchModuleStatusResponse) {}
+  // Returns the training status.
   rpc GetTrainingStatus(GetTrainingStatusRequest) returns (GetTrainingStatusResponse) {}
+  // Returns an infinite stream of training status updates.
   rpc WatchTrainingStatus(WatchTrainingStatusRequest) returns (stream WatchTrainingStatusResponse) {}
+  // Returns the schema of the controller config.
   rpc GetControllerConfigSchema(GetControllerConfigSchemaRequest) returns (GetControllerConfigSchemaResponse) {}
+  // Returns the config of the controller.
   rpc GetControllerConfig(GetControllerConfigRequest) returns (GetControllerConfigResponse) {}
+  // Returns an infinite stream of controller config updates.
   rpc WatchControllerConfig(WatchControllerConfigRequest) returns (stream WatchControllerConfigResponse) {}
+  // Sets the config of the controller.
   rpc SetControllerConfig(SetControllerConfigRequest) returns (SetControllerConfigResponse) {}
+  // Returns the schema of the face config.
   rpc GetFaceConfigSchema(GetFaceConfigSchemaRequest) returns (GetFaceConfigSchemaResponse) {}
+  // Returns the config of the face.
   rpc GetFaceConfig(GetFaceConfigRequest) returns (GetFaceConfigResponse) {}
+  // Returns an infinite stream of face config updates.
   rpc WatchFaceConfig(WatchFaceConfigRequest) returns (stream WatchFaceConfigResponse) {}
+  // Sets the config of the face.
   rpc SetFaceConfig(SetFaceConfigRequest) returns (SetFaceConfigResponse) {}
+  // Returns the schema of the module config.
   rpc GetModuleConfigSchema(GetModuleConfigSchemaRequest) returns (GetModuleConfigSchemaResponse) {}
+  // Returns the config of the module.
   rpc GetModuleConfig(GetModuleConfigRequest) returns (GetModuleConfigResponse) {}
+  // Returns an infinite stream of module config updates.
   rpc WatchModuleConfig(WatchModuleConfigRequest) returns (stream WatchModuleConfigResponse) {}
+  // Sets the config of the module.
   rpc SetModuleConfig(SetModuleConfigRequest) returns (SetModuleConfigResponse) {}
+  // Starts offline training.
   rpc TrainOffline(TrainOfflineRequest) returns (TrainOfflineResponse) {}
+  // Starts online training.
   rpc TrainOnline(TrainOnlineRequest) returns (TrainOnlineResponse) {}
+  // Stops training.
   rpc StopTraining(StopTrainingRequest) returns (StopTrainingResponse) {}
+  // Returns the configuration of the module metrics.
   rpc GetModuleMetricsConfig(GetModuleMetricsConfigRequest) returns (GetModuleMetricsConfigResponse) {}
+  // Returns the module metrics data.
   rpc GetModuleMetrics(GetModuleMetricsRequest) returns (GetModuleMetricsResponse) {}
+  // Returns an infinite stream of module metrics data updates.
   rpc WatchModuleMetrics(WatchModuleMetricsRequest) returns (stream WatchModuleMetricsResponse) {}
+  // Returns an infinite stream of all messages.
   rpc WatchAll(WatchAllRequest) returns (stream WatchAllResponse) {}
+  // Resets the controller.
   rpc ResetController(ResetControllerRequest) returns (ResetControllerResponse) {}
+  // Resets the face.
   rpc ResetFace(ResetFaceRequest) returns (ResetFaceResponse) {}
+  // Resets the module.
   rpc ResetModule(ResetModuleRequest) returns (ResetModuleResponse) {}
+  // Returns the feed.
   rpc GetFeed(GetFeedRequest) returns (GetFeedResponse) {}
+  // Returns an infinite stream of feed updates.
   rpc WatchFeed(WatchFeedRequest) returns (stream WatchFeedResponse) {}
+  // Generates posts without any side effects.
   rpc GeneratePosts(GeneratePostsRequest) returns (stream GeneratePostsResponse) {}
 }
