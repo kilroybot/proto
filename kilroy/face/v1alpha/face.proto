@@ -1,118 +1,214 @@
+/**
+ * Definitions for face service.
+ */
 syntax = "proto3";
 
 package kilroy.face.v1alpha;
 
 import "google/protobuf/timestamp.proto";
 
+/**
+ * Request for GetMetadata.
+ */
 message GetMetadataRequest {}
 
+/**
+ * Response from GetMetadata.
+ */
 message GetMetadataResponse {
-  string key = 1;
-  string description = 2;
+  string key = 1; // The key of the face.
+  string description = 2; // The description of the face.
 }
 
+/**
+ * Request for GetPostSchema.
+ */
 message GetPostSchemaRequest {}
 
+/**
+ * Response from GetPostSchema.
+ */
 message GetPostSchemaResponse {
-  string schema = 1;
+  string schema = 1; // The schema of a post as a JSON string.
 }
 
+/**
+ * Possible face statuses.
+ */
 enum Status {
-  STATUS_UNSPECIFIED = 0;
-  STATUS_LOADING = 1;
-  STATUS_READY = 2;
+  STATUS_UNSPECIFIED = 0; // Unspecified status.
+  STATUS_LOADING = 1; // The face is loading.
+  STATUS_READY = 2; // The face is ready.
 }
 
+/**
+ * Request for GetStatus.
+ */
 message GetStatusRequest {}
 
+/**
+ * Response from GetStatus.
+ */
 message GetStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the face.
 }
 
+/**
+ * Request for WatchStatus.
+ */
 message WatchStatusRequest {}
 
+/**
+ * Response from WatchStatus.
+ */
 message WatchStatusResponse {
-  Status status = 1;
+  Status status = 1; // The status of the face.
 }
 
+/**
+ * Request for GetConfigSchema.
+ */
 message GetConfigSchemaRequest {}
 
+/**
+ * Response from GetConfigSchema.
+ */
 message GetConfigSchemaResponse {
-  string schema = 1;
+  string schema = 1; // The schema of the face config as a JSON string.
 }
 
+/**
+ * Request for GetConfig.
+ */
 message GetConfigRequest {}
 
+/**
+ * Response from GetConfig.
+ */
 message GetConfigResponse {
-  string config = 1;
+  string config = 1; // The config of the face as a JSON string.
 }
 
+/**
+ * Request for WatchConfig.
+ */
 message WatchConfigRequest {}
 
+/**
+ * Response from WatchConfig.
+ */
 message WatchConfigResponse {
-  string config = 1;
+  string config = 1; // The config of the face as a JSON string.
 }
 
+/**
+ * Request for SetConfig.
+ */
 message SetConfigRequest {
-  string config = 1;
+  string config = 1; // The config of the face as a JSON string.
 }
 
+/**
+ * Response from SetConfig.
+ */
 message SetConfigResponse {
-  string config = 1;
+  string config = 1; // The config of the face as a JSON string.
 }
 
+/**
+ * Generated post data.
+ */
 message GeneratedPost {
-  string content = 1;
+  string content = 1; // The content of the post as a JSON string.
 }
 
+/**
+ * Request for Post.
+ */
 message PostRequest {
-  GeneratedPost post = 1;
+  GeneratedPost post = 1; // The post to post.
 }
 
+/**
+ * Response from Post.
+ */
 message PostResponse {
-  string post_id = 1;
-  string post_url = 2;
+  string post_id = 1; // The ID of the post.
+  string post_url = 2; // The URL of the post.
 }
 
+/**
+ * Request for Score.
+ */
 message ScoreRequest {
-  string post_id = 1;
+  string post_id = 1; // The ID of the post to score.
 }
 
+/**
+ * Response from Score.
+ */
 message ScoreResponse {
-  double score = 1;
+  double score = 1; // The score of the post.
 }
 
+/**
+ * Real post data.
+ */
 message RealPost {
-  string id = 1;
-  string content = 2;
-  double score = 3;
+  string id = 1; // The ID of the post.
+  string content = 2; // The content of the post as a JSON string.
+  double score = 3; // The score of the post.
 }
 
+/**
+ * Request for Scrap.
+ */
 message ScrapRequest {
-  optional uint64 limit = 1;
-  optional google.protobuf.Timestamp before = 2;
-  optional google.protobuf.Timestamp after = 3;
+  optional uint64 limit = 1; // The maximum number of posts to scrap.
+  optional google.protobuf.Timestamp before = 2; // The maximum time of the posts to scrap.
+  optional google.protobuf.Timestamp after = 3; // The minimum time of the posts to scrap.
 }
 
+/**
+ * Response from Scrap.
+ */
 message ScrapResponse {
-  RealPost post = 1;
+  RealPost post = 1; // The post that was scrapped.
 }
 
+/**
+ * Request for Reset.
+ */
 message ResetRequest {}
 
+/**
+ * Response from Reset.
+ */
 message ResetResponse {}
 
 service FaceService {
+  // Returns the metadata of the face.
   rpc GetMetadata(GetMetadataRequest) returns (GetMetadataResponse) {}
+  // Returns the schema of a post.
   rpc GetPostSchema(GetPostSchemaRequest) returns (GetPostSchemaResponse) {}
+  // Returns the status of the face.
   rpc GetStatus(GetStatusRequest) returns (GetStatusResponse) {}
+  // Returns an infinite stream of status updates.
   rpc WatchStatus(WatchStatusRequest) returns (stream WatchStatusResponse) {}
+  // Returns the schema of the face config.
   rpc GetConfigSchema(GetConfigSchemaRequest) returns (GetConfigSchemaResponse) {}
+  // Returns the config of the face.
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {}
+  // Returns an infinite stream of config updates.
   rpc WatchConfig(WatchConfigRequest) returns (stream WatchConfigResponse) {}
+  // Sets the config of the face.
   rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {}
+  // Posts a post.
   rpc Post(PostRequest) returns (PostResponse) {}
+  // Evaluates a post.
   rpc Score(ScoreRequest) returns (ScoreResponse) {}
+  // Scrapes posts.
   rpc Scrap(ScrapRequest) returns (stream ScrapResponse) {}
+  // Resets the face.
   rpc Reset(ResetRequest) returns (ResetResponse) {}
 }
