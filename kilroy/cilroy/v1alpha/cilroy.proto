@@ -356,8 +356,8 @@ message StopTrainingResponse {}
 message MetricConfig {
   string id = 1; // The ID of the metric.
   string label = 2; // The label of the metric.
-  string group = 3; // The group of the metric.
-  string config = 4; // The config of the metric as a JSON string.
+  string config = 3; // The config of the metric as a JSON string.
+  repeated string tags = 4; // The tags of the metric.
 }
 
 /**
@@ -448,12 +448,35 @@ message ResetModuleRequest {}
  */
 message ResetModuleResponse {}
 
-message Post {
-  string id = 1; // The ID of the post.
-  string url = 2; // The URL of the post.
-  string content = 3; // The content of the post as a JSON string.
-  string created_at = 4; // The creation time of the post.
-}
+/**
+ * Request for SaveController.
+ */
+message SaveControllerRequest {}
+
+/**
+ * Response from SaveController.
+ */
+message SaveControllerResponse {}
+
+/**
+ * Request for SaveFace.
+ */
+message SaveFaceRequest {}
+
+/**
+ * Response from SaveFace.
+ */
+message SaveFaceResponse {}
+
+/**
+ * Request for SaveModule.
+ */
+message SaveModuleRequest {}
+
+/**
+ * Response from SaveModule.
+ */
+message SaveModuleResponse {}
 
 /**
  * Request for GetFeed.
@@ -464,7 +487,10 @@ message GetFeedRequest {}
  * Response from GetFeed.
  */
 message GetFeedResponse {
-  repeated Post posts = 1; // The posts in the feed.
+  string id = 1; // The ID of the post.
+  string url = 2; // The URL of the post.
+  string content = 3; // The content of the post as a JSON string.
+  string created_at = 4; // The creation time of the post.
 }
 
 /**
@@ -476,7 +502,10 @@ message WatchFeedRequest {}
  * Response from WatchFeed.
  */
 message WatchFeedResponse {
-  Post post = 1; // The post in the feed.
+  string id = 1; // The ID of the post.
+  string url = 2; // The URL of the post.
+  string content = 3; // The content of the post as a JSON string.
+  string created_at = 4; // The creation time of the post.
 }
 
 /**
@@ -565,8 +594,14 @@ service CilroyService {
   rpc ResetFace(ResetFaceRequest) returns (ResetFaceResponse) {}
   // Resets the module.
   rpc ResetModule(ResetModuleRequest) returns (ResetModuleResponse) {}
+  // Saves the controller.
+  rpc SaveController(SaveControllerRequest) returns (SaveControllerResponse) {}
+  // Saves the face.
+  rpc SaveFace(SaveFaceRequest) returns (SaveFaceResponse) {}
+  // Saves the module.
+  rpc SaveModule(SaveModuleRequest) returns (SaveModuleResponse) {}
   // Returns the feed.
-  rpc GetFeed(GetFeedRequest) returns (GetFeedResponse) {}
+  rpc GetFeed(GetFeedRequest) returns (stream GetFeedResponse) {}
   // Returns an infinite stream of feed updates.
   rpc WatchFeed(WatchFeedRequest) returns (stream WatchFeedResponse) {}
   // Generates posts without any side effects.

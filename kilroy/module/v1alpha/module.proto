@@ -114,77 +114,46 @@ message SetConfigResponse {
 }
 
 /**
- * Generated post data.
- */
-message GeneratedPost {
-  string id = 1; // The ID of the post.
-  string content = 2; // The content of the post as a JSON string.
-}
-
-/**
  * Request for Generate.
  */
 message GenerateRequest {
   uint64 quantity = 1; // The quantity of posts to generate.
-  bool dry = 2; // Whether to generate posts without saving them.
 }
 
 /**
  * Response from Generate.
  */
 message GenerateResponse {
-  GeneratedPost post = 1; // The generated post.
+  string content = 1; // The content of the post as a JSON string.
+  string metadata = 2; // The metadata of the post as a JSON string.
 }
 
 /**
- * Real post data.
+ * Request for FitSupervised.
  */
-message RealPost {
+message FitSupervisedRequest {
   string content = 1; // The content of the post as a JSON string.
   double score = 2; // The score of the post.
 }
 
 /**
- * Request for FitPosts.
+ * Response from FitSupervised.
  */
-message FitPostsRequest {
-  RealPost post = 1; // The post to fit.
+message FitSupervisedResponse {}
+
+/**
+ * Request for FitReinforced.
+ */
+message FitReinforcedRequest {
+  string content = 1; // The content of the post as a JSON string.
+  string metadata = 2; // The metadata of the post as a JSON string.
+  double score = 3; // The score of the post.
 }
 
 /**
- * Response from FitPosts.
+ * Response from FitReinforced.
  */
-message FitPostsResponse {}
-
-/**
- * Post score data.
- */
-message PostScore {
-  string id = 1; // The ID of the post.
-  double score = 2; // The score of the post.
-}
-
-/**
- * Request for FitScores.
- */
-message FitScoresRequest {
-  repeated PostScore scores = 1; // The scores to fit.
-}
-
-/**
- * Response from FitScores.
- */
-message FitScoresResponse {}
-
-/**
- * Request for Step.
- */
-message StepRequest {}
-
-/**
- * Response from Step.
- */
-message StepResponse {}
+message FitReinforcedResponse {}
 
 /**
  * Metric configuration data.
@@ -192,8 +161,8 @@ message StepResponse {}
 message MetricConfig {
   string id = 1; // The ID of the metric.
   string label = 2; // The label of the metric.
-  string group = 3; // The group of the metric.
-  string config = 4; // The config of the metric as a JSON string.
+  string config = 3; // The config of the metric as a JSON string.
+  repeated string tags = 4; // The tags of the metric.
 }
 
 /**
@@ -233,6 +202,16 @@ message ResetRequest {}
 message ResetResponse {}
 
 /**
+ * Request for Save.
+ */
+message SaveRequest {}
+
+/**
+ * Response from Save.
+ */
+message SaveResponse {}
+
+/**
  * Module service.
  */
 service ModuleService {
@@ -254,16 +233,16 @@ service ModuleService {
   rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {}
   // Generates posts.
   rpc Generate(GenerateRequest) returns (stream GenerateResponse) {}
-  // Fits posts.
-  rpc FitPosts(stream FitPostsRequest) returns (FitPostsResponse) {}
-  // Fits scores.
-  rpc FitScores(FitScoresRequest) returns (FitScoresResponse) {}
-  // Performs a step.
-  rpc Step(StepRequest) returns (StepResponse) {}
+  // Fits supervised.
+  rpc FitSupervised(stream FitSupervisedRequest) returns (FitSupervisedResponse) {}
+  // Fits reinforced.
+  rpc FitReinforced(stream FitReinforcedRequest) returns (FitReinforcedResponse) {}
   // Returns the configs of the metrics.
   rpc GetMetricsConfig(GetMetricsConfigRequest) returns (GetMetricsConfigResponse) {}
   // Returns an infinite stream of metric updates.
   rpc WatchMetrics(WatchMetricsRequest) returns (stream WatchMetricsResponse) {}
   // Resets the module.
   rpc Reset(ResetRequest) returns (ResetResponse) {}
+  // Saves the module.
+  rpc Save(SaveRequest) returns (SaveResponse) {}
 }
