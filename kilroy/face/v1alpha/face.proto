@@ -116,32 +116,25 @@ message SetConfigResponse {
 }
 
 /**
- * Generated post data.
- */
-message GeneratedPost {
-  string content = 1; // The content of the post as a JSON string.
-}
-
-/**
  * Request for Post.
  */
 message PostRequest {
-  GeneratedPost post = 1; // The post to post.
+  string content = 1; // The content of the post as a JSON string.
 }
 
 /**
  * Response from Post.
  */
 message PostResponse {
-  string post_id = 1; // The ID of the post.
-  string post_url = 2; // The URL of the post.
+  string id = 1; // The ID of the post.
+  string url = 2; // The URL of the post.
 }
 
 /**
  * Request for Score.
  */
 message ScoreRequest {
-  string post_id = 1; // The ID of the post to score.
+  string id = 1; // The ID of the post to score.
 }
 
 /**
@@ -149,15 +142,6 @@ message ScoreRequest {
  */
 message ScoreResponse {
   double score = 1; // The score of the post.
-}
-
-/**
- * Real post data.
- */
-message RealPost {
-  string id = 1; // The ID of the post.
-  string content = 2; // The content of the post as a JSON string.
-  double score = 3; // The score of the post.
 }
 
 /**
@@ -173,7 +157,9 @@ message ScrapRequest {
  * Response from Scrap.
  */
 message ScrapResponse {
-  RealPost post = 1; // The post that was scrapped.
+  string id = 1; // The ID of the post.
+  string content = 2; // The content of the post as a JSON string.
+  double score = 3; // The score of the post.
 }
 
 /**
@@ -185,6 +171,16 @@ message ResetRequest {}
  * Response from Reset.
  */
 message ResetResponse {}
+
+/**
+ * Request for Save.
+ */
+message SaveRequest {}
+
+/**
+ * Response from Save.
+ */
+message SaveResponse {}
 
 service FaceService {
   // Returns the metadata of the face.
@@ -211,4 +207,6 @@ service FaceService {
   rpc Scrap(ScrapRequest) returns (stream ScrapResponse) {}
   // Resets the face.
   rpc Reset(ResetRequest) returns (ResetResponse) {}
+  // Saves the face.
+  rpc Save(SaveRequest) returns (SaveResponse) {}
 }
