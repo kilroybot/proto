@@ -29,6 +29,8 @@ jobs:
         uses: actions/configure-pages@v1
       - name: Setup Buf
         uses: bufbuild/buf-setup-action@v1
+        with:
+          github_token: ${{ github.token }}
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
